@@ -3,50 +3,94 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search Typeahead</title>
+  <title>findr — search typeahead</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=DM+Serif+Display&family=Space+Grotesk:wght@400;500;700&family=Space+Mono&display=swap"
+    rel="stylesheet"
+  />
   <link rel="stylesheet" href="/static/styles.css" />
 </head>
 <body>
-  <main class="app">
-    <h1>🔍 Search Typeahead</h1>
-    <p class="subtitle">Type a prefix to see suggestions. Press Enter or click Search to submit.</p>
+  <div class="poster">
+    <!-- giant red ghost wordmark behind the masthead -->
+    <div class="ghost" aria-hidden="true">FINDR</div>
 
-    <!-- Search box + suggestion dropdown -->
-    <div class="search-wrap">
-      <div class="search-row">
-        <div class="combo">
-          <input
-            id="search-input"
-            type="text"
-            autocomplete="off"
-            placeholder="Try: ip, java, run, pizza, stock…"
-            aria-label="Search"
-            aria-autocomplete="list"
-            aria-controls="suggestions"
-          />
-          <ul id="suggestions" class="suggestions hidden" role="listbox"></ul>
+    <header class="mast">
+      <div class="brand">
+        <span class="brand-mark">findr<span class="dot">.</span></span>
+        <span class="brand-tags">
+          <span>prefix</span>
+          <span>top&#8209;10</span>
+          <span>redis</span>
+        </span>
+      </div>
+      <nav class="mast-nav" aria-hidden="true">
+        <span>search</span>
+        <span class="circled">
+          live
+          <svg class="mark-circle" viewBox="0 0 120 60" preserveAspectRatio="none">
+            <path d="M18 12 C 60 -2, 112 4, 108 28 C 104 52, 44 58, 16 46 C -6 36, -2 22, 24 14" />
+          </svg>
+        </span>
+        <span>trending</span>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1 class="hero-word">SEARCH</h1>
+      <p class="lede">
+        Type a prefix. Suggestions rank by all&#8209;time popularity and recent heat — served
+        from a Redis cache sharded with consistent hashing.
+      </p>
+
+      <div class="search-wrap">
+        <div class="search-row">
+          <div class="combo">
+            <input
+              id="search-input"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="try: ip, java, run, pizza, stock"
+              aria-label="Search"
+              aria-autocomplete="list"
+              aria-controls="suggestions"
+            />
+            <ul id="suggestions" class="suggestions hidden" role="listbox"></ul>
+          </div>
+          <button id="search-btn" type="button">SEARCH</button>
         </div>
-        <button id="search-btn" type="button">Search</button>
+
+        <label class="toggle">
+          <input type="checkbox" id="recency-toggle" checked />
+          <span class="toggle-text">recency&#8209;aware ranking</span>
+          <span class="hint">/ off = pure all&#8209;time count</span>
+        </label>
       </div>
 
-      <label class="toggle">
-        <input type="checkbox" id="recency-toggle" checked />
-        Recency-aware ranking <span class="hint">(uncheck for pure all-time count)</span>
-      </label>
-    </div>
+      <div id="status" class="status" aria-live="polite"></div>
+      <div id="response" class="response hidden"></div>
+    </section>
 
-    <!-- States + dummy response -->
-    <div id="status" class="status" aria-live="polite"></div>
-    <div id="response" class="response hidden"></div>
-
-    <!-- Trending -->
     <section class="trending">
-      <h2>🔥 Trending now</h2>
+      <h2 class="section-title">
+        TRENDING
+        <svg class="mark-underline" viewBox="0 0 260 16" preserveAspectRatio="none">
+          <path d="M3 11 C 50 3, 92 14, 140 7 C 188 1, 220 12, 256 6" />
+        </svg>
+      </h2>
       <ul id="trending-list" class="trending-list">
-        <li class="muted">No trending data yet — submit some searches.</li>
+        <li class="muted">no trending data yet — submit some searches.</li>
       </ul>
     </section>
-  </main>
+
+    <footer class="foot">
+      <span>search typeahead</span>
+      <span class="foot-red">/ trie · consistent hashing · batch writes</span>
+    </footer>
+  </div>
 
   <script src="/static/app.js"></script>
 </body>

@@ -55,6 +55,13 @@ API reference: [docs/API.md](docs/API.md). Performance numbers: [docs/PERFORMANC
 | Primary store | **SQLite** | file-based, ACID, real DB read/write counts for the batch metric |
 | Cache | **3 × Redis** (Docker) | distributed cache routed by our own consistent-hash ring |
 
+### UI / design
+A bold editorial ("brutalist") theme — paper + black + red, heavy display type, hard borders and
+hand-drawn marker accents. The page uses Google Fonts (Anton, Archivo Black, DM Serif Display,
+Space Grotesk, Space Mono), so the first load needs internet; without it the browser falls back to
+system fonts and the layout still works. All UI behaviour (debounced suggestions, dropdown,
+keyboard navigation, trending, recency toggle, loading/error states) is in `frontend/app.js`.
+
 ---
 
 ## Setup
