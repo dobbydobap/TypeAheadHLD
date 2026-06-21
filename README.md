@@ -8,7 +8,8 @@ keeps query-popularity data up to date, and serves suggestions with **low latenc
 > Built for the *System Design 101* assignment. The design deliberately exercises the course
 > topics: consistent hashing, distributed caching, eviction & invalidation, CAP/PACELC,
 > replication vs sharding, SQL vs NoSQL/LSM, and microservice-style API design.
-> See [docs/HLD.md](docs/HLD.md) for the full high-level design.
+> The full write-up (architecture, API reference, design trade-offs, performance) is in the
+> **Project Report**, submitted as a separate PDF.
 
 ---
 
@@ -41,8 +42,8 @@ Browser (debounced) ──► FastAPI ──► Consistent-hash ring ──► 3
                       Recency tracker ──► /trending
 ```
 
-Full diagram and the syllabus-topic mapping live in [docs/HLD.md](docs/HLD.md).
-API reference: [docs/API.md](docs/API.md). Performance numbers: [docs/PERFORMANCE.md](docs/PERFORMANCE.md).
+The full architecture diagram, syllabus-topic mapping, API reference, design trade-offs, and
+performance numbers are in the **Project Report** (submitted as a separate PDF).
 
 ---
 
@@ -133,7 +134,7 @@ java tutorial,40000
 | `GET /cache/debug?prefix=<p>` | Which cache node owns the prefix + hit/miss |
 | `GET /metrics` | Cache hit rate, DB read/write counts, latency percentiles |
 
-Full request/response details: [docs/API.md](docs/API.md).
+Full request/response details: the live Swagger docs at `/docs`, and the **Project Report** PDF.
 
 ---
 
@@ -143,8 +144,7 @@ Full request/response details: [docs/API.md](docs/API.md).
 python scripts/benchmark.py
 ```
 Fires a realistic mix of suggestion requests and prints p50/p95/p99 latency, cache hit rate, and
-the DB-write reduction achieved by batching. Findings are summarized in
-[docs/PERFORMANCE.md](docs/PERFORMANCE.md).
+the DB-write reduction achieved by batching. Findings are summarized in the **Project Report** PDF.
 
 ---
 
@@ -154,6 +154,5 @@ the DB-write reduction achieved by batching. Findings are summarized in
 backend/    FastAPI app, trie index, ranking, cache + consistent hashing, services, metrics
 frontend/   index.html + styles.css + app.js (debounced typeahead UI)
 scripts/    dataset generation, ingestion, benchmark
-data/        sample dataset (full CSV + .db are gitignored)
-docs/        HLD, API reference, performance report
+data/       sample dataset (full CSV + .db are gitignored)
 ```

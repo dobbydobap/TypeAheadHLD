@@ -1,11 +1,16 @@
 # ---- Viva / teaching notes: NEVER commit (personal study material) ----
 VIVA_PREP.md
 
+# ---- Project report: built locally, uploaded as a separate PDF (never committed) ----
+REPORT.html
+report.pdf
+*.pdf
+
 # ---- Python ----
 __pycache__/
 *.py[cod]
 *.egg-info/
-.venv/
+.venv*/
 venv/
 env/
 .Python
