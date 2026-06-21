@@ -23,6 +23,7 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: flex-start;   /* pin to top so tall content scrolls instead of stretching/cutting */
   padding: 28px 16px 60px;
   -webkit-font-smoothing: antialiased;
 }
@@ -42,15 +43,15 @@ body {
 /* ---- giant ghost wordmark --------------------------------------------------- */
 .ghost {
   position: absolute;
-  top: -6px;
+  top: -8px;
   left: -8px;
   right: -8px;
   font-family: "Anton", Impact, "Arial Black", sans-serif;
-  font-size: clamp(120px, 33vw, 230px);
-  line-height: 0.74;
+  font-size: clamp(88px, 22vw, 168px);
+  line-height: 0.8;
   letter-spacing: -0.04em;
   color: var(--red);
-  opacity: 0.92;
+  opacity: 0.88;
   z-index: 0;
   pointer-events: none;
   user-select: none;
@@ -58,7 +59,11 @@ body {
   overflow: hidden;
 }
 
-.mast, .hero, .trending, .foot { position: relative; z-index: 1; }
+/* Stacking: content sits above the ghost (z 0). The hero is lifted ABOVE trending/footer so the
+   suggestion dropdown (which lives inside the hero) floats cleanly over them when open. */
+.mast { position: relative; z-index: 2; }
+.hero { position: relative; z-index: 5; }
+.trending, .foot { position: relative; z-index: 1; }
 
 /* ---- masthead --------------------------------------------------------------- */
 .mast {
@@ -66,7 +71,7 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
-  min-height: 96px;
+  min-height: 132px;   /* reserve the ghost-word band so the hero starts below it */
 }
 
 .brand-mark {
@@ -114,15 +119,15 @@ body {
 }
 
 /* ---- hero ------------------------------------------------------------------- */
-.hero { margin-top: 18px; }
+.hero { margin-top: 14px; }
 
 .hero-word {
   font-family: "DM Serif Display", Georgia, "Times New Roman", serif;
   font-weight: 400;
-  font-size: clamp(64px, 22vw, 132px);
-  line-height: 0.86;
+  font-size: clamp(54px, 17vw, 110px);
+  line-height: 0.88;
   letter-spacing: -0.01em;
-  margin: 0 0 14px;
+  margin: 0 0 16px;
   text-transform: uppercase;
 }
 

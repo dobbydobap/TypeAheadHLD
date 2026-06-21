@@ -77,6 +77,8 @@ async def timing_middleware(request, call_next):
     elapsed_ms = (time.perf_counter() - start) * 1000.0
     metrics.record_latency(request.url.path, elapsed_ms)
     response.headers["X-Process-Time-Ms"] = f"{elapsed_ms:.2f}"
+    # Local dev/demo: never let the browser cache HTML/CSS/JS, so edits always show up.
+    response.headers["Cache-Control"] = "no-store"
     return response
 
 
